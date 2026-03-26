@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import PortfolioPage from "./pages/PortfolioPage";
+import EducationPage from "./pages/EducationPage";
+import ExperiencePage from "./pages/ExperiencePage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: "20px" }}>
+      <h1>Portfolio Dashboard</h1>
+      <PortfolioPage />
+      <hr />
+      <EducationPage />
+      <hr />
+      <ExperiencePage />
     </div>
   );
 }
