@@ -4,7 +4,7 @@ import { getSkills, createSkill, deleteSkill } from "../services/skillService";
 function SkillsPage() {
     const [skills, setSkills] = useState([]);
     const [formData, setFormData] = useState({
-        name:"",
+        name: "",
         category: "Language",
         level: "Beginner",
     });
@@ -24,6 +24,12 @@ function SkillsPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!formData.name.trim()) {
+            alert("Skill name is required");
+            return;
+        }
+
         await createSkill(formData);
         setFormData({ name: "", category: "Language", level: "Beginner" });
         loadSkills();
@@ -47,13 +53,17 @@ function SkillsPage() {
                     onChange={handleChange}
                 />
 
-                <select name ="category" value={formData.category} onChange={handleChange}>
+                <select
+                    name="category"
+                    value={formData.category}
+                    onChange={handleChange}
+                >
                     <option value="Language">Language</option>
                     <option value="Framework">Framework</option>
+                    <option value="Tool">Tool</option>
                     <option value="Technology">Technology</option>
                     <option value="Certification">Certification</option>
-                    <option value="Soft Skill">Soft Skill</option>
-                    <option value="Other">Other</option>
+                    <option value="Other Skills">Other Skills</option>
                 </select>
 
                 <select name="level" value={formData.level} onChange={handleChange}>
@@ -68,7 +78,7 @@ function SkillsPage() {
             <ul>
                 {skills.map((skill) => (
                     <li key={skill._id}>
-                        {skill.name} - [skill.category] - {skill.level}
+                        {skill.name} - {skill.category} - {skill.level}
                         <button onClick={() => handleDelete(skill._id)}>Delete</button>
                     </li>
                 ))}
