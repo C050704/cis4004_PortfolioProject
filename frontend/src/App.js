@@ -1,15 +1,18 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ProjectsPage from "./pages/ProjectsPage";
-import SkillsPage from "./pages/SkillsPage";
+import "./App.css";
+import PortfolioPage from "./pages/PortfolioPage";
+import EducationPage from "./pages/EducationPage";
+import ExperiencePage from "./pages/ExperiencePage";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/skills" element={<SkillsPage />} />
-      </Routes>
-    </Router>
+    <div style={{ padding: "20px" }}>
+      <h1>Portfolio Dashboard</h1>
+      <PortfolioPage />
+      <hr />
+      <EducationPage />
+      <hr />
+      <ExperiencePage />
+    </div>
   );
 }
 
