@@ -2,10 +2,11 @@ const mongoose = require("mongoose");
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/portfolioDB");
+    const uri = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/portfolioDB";
+    await mongoose.connect(uri);
     console.log("MongoDB connected");
   } catch (error) {
-    console.error(error);
+    console.error("MongoDB connection error:", error.message);
     process.exit(1);
   }
 };
