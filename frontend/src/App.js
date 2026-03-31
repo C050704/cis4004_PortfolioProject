@@ -6,10 +6,8 @@ import EducationPage from "./pages/EducationPage";
 import ExperiencePage from "./pages/ExperiencePage";
 import SkillsPage from "./pages/SkillsPage";
 import ProjectsPage from "./pages/ProjectsPage";
-
-function LoginPage() {
-  return <h2>Login page — teammate's work</h2>;
-}
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
@@ -20,11 +18,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-
-        {/* Public */}
         <Route path="/" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
 
-        {/* Get started — no sidebar */}
         <Route
           path="/get-started"
           element={
@@ -34,7 +30,6 @@ function App() {
           }
         />
 
-        {/* Everything below here gets the sidebar */}
         <Route
           path="/portfolio"
           element={
@@ -49,7 +44,6 @@ function App() {
           <Route path="skills" element={<SkillsPage />} />
           <Route path="projects" element={<ProjectsPage />} />
         </Route>
-
       </Routes>
     </BrowserRouter>
   );
