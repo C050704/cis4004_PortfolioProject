@@ -15,6 +15,7 @@ const createToken = (userId) => {
 
 router.post("/register", async (req, res) => {
   try {
+    console.log("REGISTER HIT", req.body);
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
@@ -46,12 +47,14 @@ router.post("/register", async (req, res) => {
       }
     });
   } catch (error) {
+    console.error("REGISTER ERROR", error);
     res.status(500).json({ message: "Server error" });
   }
 });
 
 router.post("/login", async (req, res) => {
   try {
+    console.log("LOGIN HIT", req.body);
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -82,6 +85,7 @@ router.post("/login", async (req, res) => {
       }
     });
   } catch (error) {
+    console.error("LOGIN ERROR", error);
     res.status(500).json({ message: "Server error" });
   }
 });
