@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/skills";
+const API_URL = "/api/skills";
 
 const getToken = () => localStorage.getItem("token");
 

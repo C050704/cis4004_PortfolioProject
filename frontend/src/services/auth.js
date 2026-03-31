@@ -1,7 +1,5 @@
-const API_BASE = "http://localhost:5000/api";
-
 export const registerUser = async (formData) => {
-  const res = await fetch(`${API_BASE}/auth/register`, {
+  const res = await fetch("/api/auth/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -9,17 +7,24 @@ export const registerUser = async (formData) => {
     body: JSON.stringify(formData)
   });
 
-  const data = await res.json();
+  const text = await res.text();
+  let data = {};
+
+  try {
+    data = text ? JSON.parse(text) : {};
+  } catch {
+    throw new Error(text || `Request failed with status ${res.status}`);
+  }
 
   if (!res.ok) {
-    throw new Error(data.message || "Registration failed");
+    throw new Error(data.message || `Request failed with status ${res.status}`);
   }
 
   return data;
 };
 
 export const loginUser = async (formData) => {
-  const res = await fetch(`${API_BASE}/auth/login`, {
+  const res = await fetch("/api/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -27,10 +32,17 @@ export const loginUser = async (formData) => {
     body: JSON.stringify(formData)
   });
 
-  const data = await res.json();
+  const text = await res.text();
+  let data = {};
+
+  try {
+    data = text ? JSON.parse(text) : {};
+  } catch {
+    throw new Error(text || `Request failed with status ${res.status}`);
+  }
 
   if (!res.ok) {
-    throw new Error(data.message || "Login failed");
+    throw new Error(data.message || `Request failed with status ${res.status}`);
   }
 
   return data;
