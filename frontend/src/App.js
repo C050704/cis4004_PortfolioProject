@@ -4,6 +4,7 @@ import GetStartedPage from "./pages/GetStartedPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import EducationPage from "./pages/EducationPage";
 import ExperiencePage from "./pages/ExperiencePage";
+import MyPortfolioPage from "./pages/MyPortfolioPage";
 import SkillsPage from "./pages/SkillsPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import LoginPage from "./pages/LoginPage";
@@ -39,6 +40,7 @@ function App() {
           }
         >
           <Route index element={<PortfolioPage />} />
+          <Route path="me" element={<MyPortfolioPage />} />
           <Route path="education" element={<EducationPage />} />
           <Route path="experience" element={<ExperiencePage />} />
           <Route path="skills" element={<SkillsPage />} />
