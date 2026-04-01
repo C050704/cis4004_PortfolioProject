@@ -7,6 +7,7 @@ export default function DashboardLayout() {
       <aside className="sidebar">
         <div className="sidebar-logo">Portfolio Builder</div>
         <nav>
+          <NavLink to="/portfolio/me" className={({ isActive }) => isActive ? "active" : ""}>My Portfolio</NavLink>
           <NavLink to="/portfolio" end>Overview</NavLink>
           <NavLink to="/portfolio/skills">Skills</NavLink>
           <NavLink to="/portfolio/projects">Projects</NavLink>

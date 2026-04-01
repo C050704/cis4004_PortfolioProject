@@ -23,7 +23,13 @@ const portfolioSchema = new mongoose.Schema(
     website: {
       type: String,
       default: ""
-    }
+    },
+    displayName: { 
+      type: String, default: "" 
+    },
+    profilePic:  { 
+      type: String, default: "" 
+    },
   },
   { timestamps: true }
 );
