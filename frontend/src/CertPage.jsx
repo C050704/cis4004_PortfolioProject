@@ -10,20 +10,35 @@ const CertificationPage = () => {
     description: "",
   });
 
-  // Fetch certifications
   useEffect(() => {
     fetchCerts();
   }, []);
 
   const fetchCerts = async () => {
-    const res = await axios.get("/api/certifications");
-    setCerts(res.data);
+    try {
+      const res = await axios.get("/api/certifications");
+      setCerts(res.data);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("/api/certifications", form);
-    fetchCerts();
+    try {
+      await axios.post("/api/certifications", form);
+
+      setForm({
+        title: "",
+        issuer: "",
+        date: "",
+        description: "",
+      });
+
+      fetchCerts();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -32,18 +47,22 @@ const CertificationPage = () => {
 
       <form onSubmit={handleSubmit}>
         <input
+          value={form.title}
           placeholder="Title"
           onChange={(e) => setForm({ ...form, title: e.target.value })}
         />
         <input
+          value={form.issuer}
           placeholder="Issuer"
           onChange={(e) => setForm({ ...form, issuer: e.target.value })}
         />
         <input
+          value={form.date}
           type="date"
           onChange={(e) => setForm({ ...form, date: e.target.value })}
         />
         <input
+          value={form.description}
           placeholder="Description"
           onChange={(e) => setForm({ ...form, description: e.target.value })}
         />
