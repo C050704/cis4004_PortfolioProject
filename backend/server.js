@@ -9,18 +9,22 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/portfolio", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+// MongoDB connection
+mongoose.connect(
+  process.env.MONGO_URI || "mongodb://localhost:27017/portfolio",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+)
 .then(() => console.log("MongoDB connected"))
 .catch(err => console.log(err));
 
 // Routes
-const certificationRoutes = require("./CertRoute");
+const certificationRoutes = require("./routes/certificationRoutes");
 app.use("/api/certifications", certificationRoutes);
 
+// Test route
 app.get("/", (req, res) => {
   res.send("Backend server is running");
 });

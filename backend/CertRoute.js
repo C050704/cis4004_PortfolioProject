@@ -12,10 +12,29 @@ router.get("/", async (req, res) => {
   }
 });
 
+// GET certifications by username (IMPORTANT)
+router.get("/user/:username", async (req, res) => {
+  try {
+    const certs = await Certification.find({
+      username: req.params.username,
+    });
+    res.json(certs);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // POST create certification
 router.post("/", async (req, res) => {
   try {
-    const cert = new Certification(req.body);
+    const cert = new Certification({
+      title: req.body.title,
+      issuer: req.body.issuer,
+      date: req.body.date,
+      description: req.body.description,
+      username: req.body.username, // 🔥 REQUIRED
+    });
+
     const saved = await cert.save();
     res.status(201).json(saved);
   } catch (err) {
@@ -23,7 +42,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// PUT update certification
+// PUT update
 router.put("/:id", async (req, res) => {
   try {
     const updated = await Certification.findByIdAndUpdate(
@@ -37,7 +56,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE certification
+// DELETE
 router.delete("/:id", async (req, res) => {
   try {
     await Certification.findByIdAndDelete(req.params.id);
