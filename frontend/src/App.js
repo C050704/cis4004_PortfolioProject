@@ -9,6 +9,9 @@ import SkillsPage from "./pages/SkillsPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import AdminDashboard from "./pages/AdminDashboard";
+import UserManagementPage from "./pages/UserManagementPage";
+import PortfolioModerationPage from "./pages/PortfolioModerationPage";
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
@@ -45,6 +48,19 @@ function App() {
           <Route path="experience" element={<ExperiencePage />} />
           <Route path="skills" element={<SkillsPage />} />
           <Route path="projects" element={<ProjectsPage />} />
+        </Route>
+
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="users" element={<UserManagementPage />} />
+          <Route path="portfolios" element={<PortfolioModerationPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
